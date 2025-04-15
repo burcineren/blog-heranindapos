@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Blog Heranindapos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Blog Heranindapos, kullanıcıların blog gönderilerini görüntüleyebileceği, oluşturabileceği ve detaylarını inceleyebileceği modern bir React uygulamasıdır. Bu projede Laravel backend kullanımı kaldırılmış, yerine test ve prototipleme amacıyla JSONPlaceholder API'si kullanılmıştır. Global state yönetimi için Redux, kullanıcı oturum işlemleri için Context API, API istekleri için ise merkezi bir servis katmanı (service layer) kullanılmıştır. Responsive tasarım Bootstrap ile sağlanmaktadır.
 
-## Available Scripts
+## Özellikler
 
-In the project directory, you can run:
+- **Kullanıcı Girişi ve Kayıt:**  
+  Kullanıcılar, login ve register işlemlerini gerçekleştirebilir. Oturum yönetimi Context API üzerinden yapılır ve giriş yapmamış kullanıcıların blog içeriklerine erişimi PrivateRoute bileşeni ile engellenir.
 
-### `npm start`
+- **Blog Gönderilerinin Yönetimi:**  
+  - **Listeleme:**  
+    Redux üzerinden JSONPlaceholder'dan çekilen gönderiler, Pagination bileşeni ile listelenir.
+  - **Detay Görüntüleme:**  
+    Seçilen gönderinin detayları servis katmanı üzerinden getirilir.
+  - **Gönderi Oluşturma:**  
+    Kullanıcı, yeni gönderi oluşturabilir; oluşturulan gönderi simülasyon amaçlı JSONPlaceholder API’sine POST isteği ile gönderilir.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Responsive Tasarım:**  
+  Bootstrap kullanılarak mobil ve masaüstü uyumlu kullanıcı arayüzü sağlanmıştır.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Global API İstekleri Yönetimi:**  
+  Tüm API istekleri, `src/services/api.js` altında oluşturulan Axios instance'ı ve ilgili servis modülleri (authService.js, postService.js) üzerinden merkezi olarak yönetilir.
 
-### `npm test`
+## Kullanılan Teknolojiler
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React** – Modern, component tabanlı kullanıcı arayüzü geliştirme.
+- **Redux & Redux Toolkit** – Global state yönetimi (blog gönderileri).
+- **Context API** – Kullanıcı oturum yönetimi.
+- **React Router** – Uygulama içi yönlendirme ve korunan (private) rotalar.
+- **Axios** – Servis katmanı üzerinden API istekleri.
+- **Bootstrap** – Responsive ve modern tasarım.
+- **JSONPlaceholder** – Test amacıyla kullanılan simülasyon API'si.
 
-### `npm run build`
+## Kurulum ve Çalıştırma
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Repository’yi Klonlayın
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/burcineren/blog-heranindapos.git
+cd blog-heranindapos
+````
+### 2. Bağımlılıkları Yükleyin
+npm kullanıyorsanız:
+```bash
+npm install
+````
+veya Yarn kullanıyorsanız:
+```bash
+yarn install
+````
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Proje Yapılandırması
+####	API Ayarları:
+Tüm API istekleri, src/services/api.js dosyasında tanımlı baseURL (https://jsonplaceholder.typicode.com) üzerinden gerçekleştirilmektedir. Gerekli ayarlamalar (örneğin, timeout, header interceptor) bu dosyada yapılabilir.
 
-### `npm run eject`
+####	Servis Katmanı:
+	•	src/services/api.js: Axios instance’ı oluşturulur.
+	•	src/services/authService.js: Kullanıcı giriş ve kayıt işlemleri bu dosyada yönetilir.
+	•	src/services/postService.js: Gönderi işlemleri (listeleme, detay, oluşturma, vs.) bu dosyada yönetilir.
+	•	Global State Yönetimi:
+	•	src/store/: Redux state yönetimi (postSlice.js, store/index.js) burada yer alır.
+	•	Oturum Yönetimi:
+	•	src/context/AuthContext.js: Context API kullanılarak oturum durumu yönetilir.
+####	Global State Yönetimi:
+	•	src/store/: Redux state yönetimi (postSlice.js, store/index.js) burada yer alır.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+####	Oturum Yönetimi:
+	•	src/context/AuthContext.js: Context API kullanılarak oturum durumu yönetilir.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 4.  Projeyi Çalıştırın
+npm kullanıyorsanız:
+```bash
+npm start
+````
+veya Yarn kullanıyorsanız:
+```bash
+yarn start
+````
+Bu komut, uygulamayı geliştirme modunda başlatır ve genellikle http://localhost:3000 adresinde çalışır.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Proje Yapısı
 
-## Learn More
+```bash
+blog-heranindapos/
+├── public/
+│   ├── index.html                # Temel HTML şablonu, meta etiketleri (örn. viewport) vs.
+│   └── assets/                   # Görseller, ikonlar vs.
+├── src/
+│   ├── components/               # Navbar, Pagination, PrivateRoute gibi yeniden kullanılabilir bileşenler
+│   ├── context/                  # AuthContext.js: Kullanıcı oturum yönetimi için Context API
+│   ├── pages/                    # LoginPage, RegisterPage, PostListPage, PostDetailPage, PostCreatePage
+│   ├── services/                 # api.js, authService.js, postService.js: API isteklerinin merkezi yönetimi
+│   ├── store/                    # postSlice.js, index.js: Redux global state yönetimi
+│   ├── App.js                    # Uygulamanın yönlendirme yapısı (React Router) ve temel bileşen yerleşimi
+│   └── index.js                  # Uygulamanın giriş noktası, Redux Provider ve AuthProvider sarmalaması
+├── .gitignore
+├── package.json
+└── README.md                     # Bu dosya
+````
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
