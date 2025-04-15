@@ -1,6 +1,6 @@
 # Blog Heranindapos
 
-Blog Heranindapos, kullanıcıların blog gönderilerini görüntüleyebileceği, oluşturabileceği ve detaylarını inceleyebileceği modern bir React uygulamasıdır. Bu projede Laravel backend kullanımı kaldırılmış, yerine test ve prototipleme amacıyla JSONPlaceholder API'si kullanılmıştır. Global state yönetimi için Redux, kullanıcı oturum işlemleri için Context API, API istekleri için ise merkezi bir servis katmanı (service layer) kullanılmıştır. Responsive tasarım Bootstrap ile sağlanmaktadır.
+Blog Heranindapos, kullanıcıların blog gönderilerini görüntüleyebileceği, oluşturabileceği ve detaylarını inceleyebileceği modern bir React uygulamasıdır. Bu projede backend için test ve prototipleme amacıyla JSONPlaceholder API'si kullanılmıştır. Global state yönetimi için Redux, kullanıcı oturum işlemleri için Context API, API istekleri için ise merkezi bir servis katmanı (service layer) kullanılmıştır. Responsive tasarım Bootstrap ile sağlanmaktadır.
 
 ## Özellikler
 
@@ -54,18 +54,18 @@ yarn install
 Tüm API istekleri, src/services/api.js dosyasında tanımlı baseURL (https://jsonplaceholder.typicode.com) üzerinden gerçekleştirilmektedir. Gerekli ayarlamalar (örneğin, timeout, header interceptor) bu dosyada yapılabilir.
 
 ####	Servis Katmanı:
-	•	src/services/api.js: Axios instance’ı oluşturulur.
-	•	src/services/authService.js: Kullanıcı giriş ve kayıt işlemleri bu dosyada yönetilir.
-	•	src/services/postService.js: Gönderi işlemleri (listeleme, detay, oluşturma, vs.) bu dosyada yönetilir.
-	•	Global State Yönetimi:
-	•	src/store/: Redux state yönetimi (postSlice.js, store/index.js) burada yer alır.
-	•	Oturum Yönetimi:
-	•	src/context/AuthContext.js: Context API kullanılarak oturum durumu yönetilir.
+	• src/services/api.js: Axios instance’ı oluşturulur.
+	• src/services/authService.js: Kullanıcı giriş ve kayıt işlemleri bu dosyada yönetilir.
+	• src/services/postService.js: Gönderi işlemleri (listeleme, detay, oluşturma, vs.) bu dosyada yönetilir.
+	• Global State Yönetimi:
+	• src/store/: Redux state yönetimi (postSlice.js, store/index.js) burada yer alır.
+	• Oturum Yönetimi:
+	• src/context/AuthContext.js: Context API kullanılarak oturum durumu yönetilir.
 ####	Global State Yönetimi:
-	•	src/store/: Redux state yönetimi (postSlice.js, store/index.js) burada yer alır.
+	• src/store/: Redux state yönetimi (postSlice.js, store/index.js) burada yer alır.
 
 ####	Oturum Yönetimi:
-	•	src/context/AuthContext.js: Context API kullanılarak oturum durumu yönetilir.
+	• src/context/AuthContext.js: Context API kullanılarak oturum durumu yönetilir.
 
 
 ### 4.  Projeyi Çalıştırın
