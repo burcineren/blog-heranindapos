@@ -99,3 +99,10 @@ blog-heranindapos/
 └── README.md                     # Bu dosya
 ````
 
+### Demo Kullanıcı Bilgileri
+Aşağıdaki test hesabı ile uygulamaya giriş yapabilirsiniz:
+
+E-posta: Sincere@april.biz
+Şifre: 123
+
+Bu kullanıcı, JSONPlaceholder üzerinde mevcut olan demo veriler ile ilişkilidir ve test amaçlı kullanılabilir.
